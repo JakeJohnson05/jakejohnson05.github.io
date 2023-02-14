@@ -1,12 +1,24 @@
 version: "3.9"
 
 services:
-  app:
+  client:
     build:
-      context: .
+      context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public
+      - /app/node_modules
+      - ./client/public:/app/public
+      - ./client/src:/app/src
     ports:
-      - 80:3000
+      - 3000:3000
+
+  nginx:
+    depends_on:
+      - client
+      # - api
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80

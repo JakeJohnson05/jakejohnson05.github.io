@@ -21,7 +21,7 @@ class MailTransport {
         contentDisposition: 'inline',
         // TODO: Get actual logo and use path relative to this file
         path: 'https://www.1080sweep.com/assets/images/logo.png',
-        cid: `jakelogo`,
+        cid: 'jakelogo',
       },
     ],
   };
@@ -31,13 +31,13 @@ class MailTransport {
       service: process.env.EMAIL_SERVICE,
       auth: {
         user: process.env.FROM_EMAIL,
-        pass: process.env.FROM_EMAIL_PASSWORD,
+        pass: process.env.FROM_EMAIL_PASSWORD
       },
     });
   }
 
   /** Build and submit the request to send an email */
-  sendMail = (subject: string, html: string): Promise<any> =>
+  sendMail = (subject: string, html: string) =>
     this._transport.sendMail(
       Object.assign<SendMailOptions, SendMailOptions>(
         { subject, html },
@@ -88,18 +88,16 @@ export const emailRouter = (): Router & { emailTransporter: MailTransport } => {
         .trim()
         .exists({ checkFalsy: true })
         .withMessage('Required')
-        .customSanitizer((email) => email.toLowerCase())
+        .customSanitizer((email: string) => email.toLowerCase())
         // .isEmail().withMessage('email')
         .isLength({ max: 320 })
         .withMessage('maxlength'),
       body('website').trim(),
     ],
-    (req: Request, res: Response) => {
+    (req: Request & { session: { emailsSent?: number } }, res: Response) => {
       // Check if the client has reached their max already
-      try {
-        if ((req.session.emailsSent || 0) >= 2)
-          return res.status(420).json('Email rate limit exceeded');
-      } catch (_) {}
+      if ((req.session.emailsSent || 0) >= 2)
+        return res.status(420).json('Email rate limit exceeded');
 
       // Check for errors from the express-validator chain
       const errors = validationResult(req);
@@ -136,7 +134,7 @@ export const emailRouter = (): Router & { emailTransporter: MailTransport } => {
    * `Recently` is defined as the session being active. This length is determined
    * in /app.js
    */
-  router.get('/quota', (req, res) => {
+  router.get('/quota', (req: Request & { session: { emailsSent?: number } }, res: Response) => {
     try {
       res.status(200).json(req.session.emailsSent || 0);
     } catch (_) {
