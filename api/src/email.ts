@@ -31,7 +31,7 @@ class MailTransport {
       service: process.env.EMAIL_SERVICE,
       auth: {
         user: process.env.FROM_EMAIL,
-        pass: process.env.FROM_EMAIL_PASSWORD
+        pass: process.env.FROM_EMAIL_PASSWORD,
       },
     });
   }
@@ -134,13 +134,16 @@ export const emailRouter = (): Router & { emailTransporter: MailTransport } => {
    * `Recently` is defined as the session being active. This length is determined
    * in /app.js
    */
-  router.get('/quota', (req: Request & { session: { emailsSent?: number } }, res: Response) => {
-    try {
-      res.status(200).json(req.session.emailsSent || 0);
-    } catch (_) {
-      res.status(200).json(0);
+  router.get(
+    '/quota',
+    (req: Request & { session: { emailsSent?: number } }, res: Response) => {
+      try {
+        res.status(200).json(req.session.emailsSent || 0);
+      } catch (_) {
+        res.status(200).json(0);
+      }
     }
-  });
+  );
 
   return Object.assign(router, { emailTransporter });
 };

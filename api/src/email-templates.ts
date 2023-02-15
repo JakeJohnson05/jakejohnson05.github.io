@@ -9,7 +9,7 @@ class MainContentParam {
   paddingBottom: string | undefined;
   fontSize: string | undefined;
   paddingLR: string | undefined;
-  
+
   constructor(
     public type: 'title' | 'body' | 'custom',
     public text: string,
@@ -50,16 +50,16 @@ const GenerateCommon = {
         (type == 'custom'
           ? text
           : `<tr style="border-collapse:collapse;"><td class="es-m-txt-l" bgcolor="#ffffff" align="left" style="Margin:0;padding-top:${paddingTop}px;padding-bottom:${
-            type == 'title' ? '0' : paddingBottom
-          }px;padding-left:${paddingLR}px;padding-right:${paddingLR}px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:${
-            type == 'title' ? '20' : fontSize
-          }px;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#${
-            type == 'title' ? '111111' : '666666'
-          };white-space:pre-wrap;">${
-            type == 'title'
-              ? '<span style="color:#019cbb;font-size:24px;">|</span> '
-              : ''
-          }${text}</p></td></tr>`),
+              type == 'title' ? '0' : paddingBottom
+            }px;padding-left:${paddingLR}px;padding-right:${paddingLR}px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:${
+              type == 'title' ? '20' : fontSize
+            }px;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#${
+              type == 'title' ? '111111' : '666666'
+            };white-space:pre-wrap;">${
+              type == 'title'
+                ? '<span style="color:#019cbb;font-size:24px;">|</span> '
+                : ''
+            }${text}</p></td></tr>`),
       ''
     )}</table></td></tr></table></td></tr></table></td></tr></table>`,
   seperationFromMainContent: () =>

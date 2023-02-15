@@ -10,7 +10,7 @@ import { emailRouter } from './email';
  * so '/api/email' looks like '/email' here
  */
 export const ApiServer = (): Router => {
-    let router = Router()
+  const router = Router();
 
   router.use('/email', emailRouter());
 

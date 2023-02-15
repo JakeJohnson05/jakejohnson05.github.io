@@ -1,13 +1,12 @@
 /**
  * This is the entry point to the program.
  *
- * It creates the application instance which serves the angular application and 
+ * It creates the application instance which serves the angular application and
  * our API.
-*/
+ */
 
 // Configure environment vars
 import { json, urlencoded } from 'body-parser';
-import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import { createServer } from 'http';
@@ -24,7 +23,7 @@ import session from 'express-session';
 /** Our api to handle contact requests and rate limiting */
 import { ApiServer } from './api-control';
 
-/** The express aplication instance */
+/** The express application instance */
 const app: express.Application = express();
 
 ////////////////////////////////////////////////
@@ -38,22 +37,24 @@ app.use(urlencoded({ extended: false }));
 /** The number of milliseconds in one hour */
 const msInHour = 3600000;
 // set up the session and config for cookies
-app.use(session({
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  secret: process.env.SECRET_KEY!,
-  resave: false,
-  saveUninitialized: false,
-  // store: new SequelizeSessionStore({
-  // 	db: sequelizeDB.db,
-  // 	checkExpirationInterval: msInHour * 96
-  // }),
-  cookie: {
-    sameSite: true,
-    secure: false,
-    maxAge: msInHour * 24,
-    httpOnly: true
-  }
-}));
+app.use(
+  session({
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    secret: process.env.SECRET_KEY!,
+    resave: false,
+    saveUninitialized: false,
+    // store: new SequelizeSessionStore({
+    // 	db: sequelizeDB.db,
+    // 	checkExpirationInterval: msInHour * 96
+    // }),
+    cookie: {
+      sameSite: true,
+      secure: false,
+      maxAge: msInHour * 24,
+      httpOnly: true,
+    },
+  })
+);
 // protect against dangerous web vulnerabilities
 app.use(helmet());
 
@@ -75,4 +76,7 @@ const port = process.env.PORT || '3000';
 app.set('port', port);
 
 // Create and then listen to output
-createServer(app).listen(port, console.log.bind(null, 'Server running', `listening on localhost:${port}`));
+createServer(app).listen(
+  port,
+  console.log.bind(null, 'Server running', `listening on localhost:${port}`)
+);
