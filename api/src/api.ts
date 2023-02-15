@@ -5,7 +5,6 @@
  * our API.
  */
 
-// Configure environment vars
 import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import helmet from 'helmet';
@@ -26,9 +25,7 @@ import { ApiServer } from './api-control';
 /** The express application instance */
 const app: express.Application = express();
 
-////////////////////////////////////////////////
-// Middleware
-//
+/* ------------------------------- Middleware ------------------------------- */
 // Protects against common web vulnerabilities
 app.use(helmet());
 // parsers for POST data
@@ -58,21 +55,17 @@ app.use(
 // protect against dangerous web vulnerabilities
 app.use(helmet());
 
-////////////////////////////////////////////////
-// Routes
-//
+/* --------------------------------- Routes --------------------------------- */
 // Point static paths to dist
-app.use(express.static(join(__dirname, 'src/')));
+0 && app.use(express.static(join(__dirname, 'src/')));
 // Set our api
-app.use('/api', ApiServer());
+app.use('/', ApiServer());
 // Route all other routes to the angular application
-app.get('*', (_, res) => res.sendFile(join(__dirname, 'src/index.html')));
+0 && app.get('*', (_, res) => res.sendFile(join(__dirname, 'src/index.html')));
 
-////////////////////////////////////////////////////////////////////////
-// Start up the Node Server
-
+/* ------------------------ Start up the Node Server ------------------------ */
 // Set the port
-const port = process.env.PORT || '3000';
+const port = process.env.PORT;
 app.set('port', port);
 
 // Create and then listen to output

@@ -12,6 +12,10 @@ import { emailRouter } from './email';
 export const ApiServer = (): Router => {
   const router = Router();
 
+  router.get('/ping', (req, res) => {
+    return res.status(200).send('Healthy Connection');
+  });
+
   router.use('/email', emailRouter());
 
   return router;
