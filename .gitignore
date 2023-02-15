@@ -23,6 +23,7 @@ node_modules
 /*.code-workspace
 /.vscode/*
 !/.vscode/settings.json
+!/.vscode/extensions.json
 
 npm-debug.log*
 yarn-debug.log*
