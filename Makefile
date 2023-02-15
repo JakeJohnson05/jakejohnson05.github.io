@@ -1,4 +1,4 @@
-.PHONY: install install-client
+.PHONY: install install-client install-api lint lint-client lint-api
 
 override COLUMN_WIDTH=`tput cols`
 
@@ -26,8 +26,22 @@ override PRNT_WARN=$(call PRNT_STATUS,3,warning,$(1))
 # 8	Not used
 # 9	Reset to default color
 
-install: install-client
+install: install-client install-api
 
 install-client:
 	@cd client; \
 	npm i &>/dev/null
+
+install-api:
+	@cd api; \
+	npm i &>/dev/null
+	
+lint: lint-client lint-api
+
+lint-client:
+	@cd client; \
+	npm run lint
+
+lint-api:
+	@cd api; \
+	npm run lint
