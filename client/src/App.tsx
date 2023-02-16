@@ -1,4 +1,5 @@
-import './App.css';
+import React from 'react';
+import './App.sass';
 import logo from './logo.svg';
 
 function App() {
