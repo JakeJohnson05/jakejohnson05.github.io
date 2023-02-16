@@ -1,4 +1,5 @@
-.PHONY: install install-client install-api lint lint-client lint-api
+.PHONY: start install install-client install-api lint lint-client lint-api
+.DEFAULT_GOAL := start
 
 override COLUMN_WIDTH=`tput cols`
 
@@ -45,3 +46,6 @@ lint-client:
 lint-api:
 	@cd api; \
 	npm run lint
+
+start: install
+	docker-compose up --build
