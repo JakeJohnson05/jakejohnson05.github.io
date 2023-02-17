@@ -6,7 +6,6 @@ services:
       context: ./api
       dockerfile: Dockerfile
     volumes:
-      - /app/node_modules
       - ./api/src:/app/src
       - ./api/assets:/app/assets
       - ./tsconfig.json:/tsconfig.json
@@ -23,7 +22,6 @@ services:
       context: ./client
       dockerfile: Dockerfile
     volumes:
-      - /app/node_modules
       - ./client/public:/app/public
       - ./client/src:/app/src
       - ./tsconfig.json:/tsconfig.json
