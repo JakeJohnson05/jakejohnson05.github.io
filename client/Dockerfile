@@ -4,5 +4,6 @@ WORKDIR /app
 
 COPY package.json package-lock.json tsconfig.json ./
 RUN npm install --silent
+COPY src public ./
 
 CMD ["npm", "start"]
