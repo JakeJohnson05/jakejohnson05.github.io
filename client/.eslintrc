@@ -20,6 +20,8 @@
     "react/react-in-jsx-scope": 0,
     "linebreak-style": [2, "unix"],
     "quotes": [2, "single"],
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "@typescript-eslint/no-empty-interface": 1,
+    "react/display-name": 0
   }
 }
