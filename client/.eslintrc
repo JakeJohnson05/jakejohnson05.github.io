@@ -17,11 +17,23 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/no-empty-interface": 1,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-unused-vars": [
+      1,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
     "linebreak-style": [2, "unix"],
     "quotes": [2, "single"],
     "react/display-name": 0,
+    "react/hook-use-state": 2,
+    "react/jsx-fragments": [2, "syntax"],
     "react/jsx-uses-react": "off",
+    "react/prefer-read-only-props": 2,
     "react/react-in-jsx-scope": "off",
     "semi": [2, "always"]
   }
