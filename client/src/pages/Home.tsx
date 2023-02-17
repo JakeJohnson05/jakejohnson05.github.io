@@ -1,7 +1,12 @@
 import { Container, Link } from '@mui/material';
 import Button from '../components/Button';
 
-export default (props: any) => {
+interface HomeProps {
+  enabled: boolean;
+  isEnabled: boolean;
+}
+
+export default (props: HomeProps) => {
   return (
     <Container>
       <Button text="Hey There" />
