@@ -17,11 +17,12 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/no-empty-interface": 1,
     "linebreak-style": [2, "unix"],
     "quotes": [2, "single"],
-    "semi": [2, "always"],
-    "@typescript-eslint/no-empty-interface": 1,
-    "react/display-name": 0
+    "react/display-name": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "semi": [2, "always"]
   }
 }
