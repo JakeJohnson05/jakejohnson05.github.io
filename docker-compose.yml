@@ -8,6 +8,7 @@ services:
     volumes:
       - /app/node_modules
       - ./api/src:/app/src
+      - ./api/assets:/app/assets
       - ./tsconfig.json:/tsconfig.json
     environment:
       - PORT=3001

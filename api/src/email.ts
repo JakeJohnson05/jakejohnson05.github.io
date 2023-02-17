@@ -19,8 +19,7 @@ class MailTransport {
       {
         filename: 'jakejohnson-logo.png',
         contentDisposition: 'inline',
-        // TODO: Get actual logo and use path relative to this file
-        path: 'https://www.1080sweep.com/assets/images/logo.png',
+        path: '/app/assets/logo.png',
         cid: 'jakelogo',
       },
     ],
@@ -123,7 +122,13 @@ export const emailRouter = (): Router & { emailTransporter: MailTransport } => {
             .status(200)
             .json({ success: true, emailsSent: req.session.emailsSent });
         })
-        .catch(() => res.status(501).json('Inquiry submission unsuccessful'));
+        .catch((e) => {
+          console.error('ERROR Sending email', e);
+          return res.status(501).json({
+            success: false,
+            message: 'Inquiry submission unsuccessful',
+          });
+        });
     }
   );
 
