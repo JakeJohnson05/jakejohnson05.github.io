@@ -5,6 +5,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+      target: ${TARGET:-prod}
     volumes:
       - ./api/src:/app/src
       - ./api/assets:/app/assets
@@ -21,12 +22,11 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+      target: ${TARGET:-prod}
     volumes:
       - ./client/public:/app/public
       - ./client/src:/app/src
       - ./tsconfig.json:/tsconfig.json
-    ports:
-      - 3000:3000
 
   nginx:
     depends_on:

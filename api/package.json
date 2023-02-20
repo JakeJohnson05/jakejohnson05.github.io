@@ -14,9 +14,8 @@
   "homepage": "https://github.com/JakeJohnson05/website#readme",
   "scripts": {
     "build": "tsc --esModuleInterop src/api.ts --outDir build",
-    "prestartss": "npm run build",
-    "start:prod": "node build/api.js",
-    "start": "nodemon src/api.ts",
+    "start": "node build/api.js",
+    "start:dev": "nodemon src/api.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --fix && prettier -w src"
   },
