@@ -25,6 +25,8 @@ services:
       - ./client/public:/app/public
       - ./client/src:/app/src
       - ./tsconfig.json:/tsconfig.json
+    ports:
+      - 3000:3000
 
   nginx:
     depends_on:

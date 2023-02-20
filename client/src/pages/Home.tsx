@@ -3,7 +3,7 @@ import Button from '../components/Button';
 
 interface HomeProps {}
 
-export default (props: HomeProps) => {
+export default (_props: HomeProps) => {
   return (
     <Container>
       <Button text="Hey There" />
